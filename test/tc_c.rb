@@ -1,17 +1,13 @@
-
-$:.unshift File.join(File.dirname(__FILE__), "..", "lib")
-require 'neptune'
-
 $:.unshift File.join(File.dirname(__FILE__), "..", "test")
 require 'test_helper'
-
-require 'test/unit'
 
 class TestC < Test::Unit::TestCase
   # unlike the other language interfaces, we don't run c code yet
   # just compile it - this may change in the future
 
   def test_c_compile
+    
+    
     ring_code = <<BAZ
 #include <stdio.h>
 
@@ -34,9 +30,9 @@ BAZ
     TestHelper.write_file(local, ring_code)
 
     output = TestHelper.get_output_location(folder)
-
+    
     compile_c_code(tmp_folder, source, compiled)
-
+    
     FileUtils.rm_rf(tmp_folder)
     FileUtils.rm_rf(compiled)
   end

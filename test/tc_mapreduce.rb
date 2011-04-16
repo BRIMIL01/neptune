@@ -1,3 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__), "..", "test")
+require 'test_helper'
 
 class TestMapReduce < Test::Unit::TestCase
   def test_java_mr_code

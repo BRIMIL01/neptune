@@ -1,3 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__), "..", "test")
+require 'test_helper'
 
 class TestDFSP < Test::Unit::TestCase
   def test_dfsp

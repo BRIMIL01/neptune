@@ -274,14 +274,13 @@ def neptune(params)
       end
       sleep(5)
     }
+    
+    FileUtils.rm_rf(copy_to)
 
-    rm_local = "rm -rf #{copy_to}"
-    #puts rm_local
-    `#{rm_local}`
-
-    scp_command = "scp -r #{ssh_args} root@#{shadow_ip}:#{compiled_location} #{copy_to} 2>&1"
-    puts scp_command
-    `#{scp_command}`
+    # scp_command = "scp -r #{ssh_args} root@#{shadow_ip}:#{compiled_location} #{copy_to} 2>&1"
+    # puts scp_command
+    # `#{scp_command}`
+    CommonFunctions.scp_file(compiled_location, copy_to, shadow_ip, ssh_key, true)
 
     code = job_data["@code"]
     dirs = code.split(/\//)

@@ -1,3 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__), "..", "test")
+require 'test_helper'
 
 class TestX10 < Test::Unit::TestCase
   def test_ring_code

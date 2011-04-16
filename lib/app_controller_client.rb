@@ -10,7 +10,7 @@ require 'timeout'
 # endlessly timeout and retry, so as a hack, just don't let them timeout.
 # The next version should replace this and properly timeout and not use
 # long calls unless necessary.
-NO_TIMEOUT = -1
+NO_TIMEOUT = 600
 
 # A client that uses SOAP messages to communicate with the underlying cloud
 # platform (here, AppScale). This client is similar to that used in the AppScale

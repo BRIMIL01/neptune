@@ -37,7 +37,7 @@ module CommonFunctions
   def self.scp_file(local_file_loc, remote_file_loc, target_ip, public_key_loc, is_dir=false)
     cmd = ""
     local_file_loc = File.expand_path(local_file_loc)
-
+    
     ssh_args = "-o StrictHostkeyChecking=no 2>&1"
     ssh_args << " -r " if is_dir
 
@@ -49,7 +49,8 @@ module CommonFunctions
     FileUtils.rm_f(retval_loc)
 
     begin
-      Timeout::timeout(-1) { `#{cmd}` }
+      # Craaaaazy big timeout man!
+      Timeout::timeout(600) { `#{cmd}` }
     rescue Timeout::Error
       abort("Remotely copying over files failed. Is the destination machine on and reachable from this computer? We tried the following command:\n\n#{cmd}")
     end
@@ -61,7 +62,7 @@ module CommonFunctions
 
     retval = (File.open(retval_loc) { |f| f.read }).chomp
     abort("\n\n[#{cmd}] returned #{retval} instead of 0 as expected. Is your environment set up properly?") if retval != "0"
-    return cmd
+    return nil
   end
 
   # Given the AppScale keyname, reads the associated YAML file and returns

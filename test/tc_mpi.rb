@@ -1,3 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__), "..", "test")
+require 'test_helper'
 
 class TestMPI < Test::Unit::TestCase
   def test_hello_world_code

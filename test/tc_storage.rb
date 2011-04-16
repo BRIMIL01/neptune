@@ -1,3 +1,5 @@
+$:.unshift File.join(File.dirname(__FILE__), "..", "test")
+require 'test_helper'
 
 class TestStorage < Test::Unit::TestCase
   def test_acl
